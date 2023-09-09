@@ -1,8 +1,10 @@
+// apiHandler.js
+
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-export async function fetchCharacters() {
+async function fetchData(endpoint) {
   try {
-    const response = await fetch(`${BASE_URL}/character`);
+    const response = await fetch(`${BASE_URL}/${endpoint}`);
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
@@ -10,6 +12,8 @@ export async function fetchCharacters() {
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
-    throw error; // You can re-throw the error if you want to handle it in a different part of your application
+    throw error;
   }
 }
+
+export { fetchData };
