@@ -1,24 +1,38 @@
-// CharacterList.js
-
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // Import the Link component
+import { Link } from 'react-router-dom';
 import { fetchData } from '../api/apiHandler';
 
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
 
+  const [totalPages, setTotalPages] = useState(1);
+
+
   useEffect(() => {
-    async function fetchCharacters() {
+    async function fetchCharacters(page) {
       try {
-        const data = await fetchData('character');
+        const data = await fetchData(`character/?page=${page}`);
         setCharacters(data.results);
+        setTotalPages(data.info.pages);
       } catch (error) {
         console.error('Error fetching characters:', error);
       }
     }
 
-    fetchCharacters();
-  }, []);
+    fetchCharacters(currentPage);
+  }, [currentPage]);
+
+  function handlePreviousPage() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  function handleNextPage() {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
 
   return (
     <div>
@@ -26,11 +40,20 @@ function CharacterList() {
       <ul>
         {characters.map((character) => (
           <li key={character.id}>
-            {/* Replace this with an img later... */}
             <Link to={`/character/${character.id}`}>{character.name}</Link>
           </li>
         ))}
       </ul>
+
+      <div>
+        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }
