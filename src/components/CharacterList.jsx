@@ -4,7 +4,7 @@ import { fetchData } from '../api/apiHandler';
 
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
 
