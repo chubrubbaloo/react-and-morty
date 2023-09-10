@@ -5,11 +5,12 @@ export default function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleInputChange = (e) => {
-        setSearchTerm(e.target.value);
-    }
+        // set the search term to the input field
+        const newSearchTerm = e.target.value;
+        setSearchTerm(newSearchTerm);
 
-    const handleSearch = () => {
-        onSearch(searchTerm);
+        // call the search function as the user types in the input field
+        onSearch(newSearchTerm);
     }
 
     return (
@@ -20,7 +21,6 @@ export default function SearchBar({ onSearch }) {
                 value={searchTerm}
                 onChange={handleInputChange}
             />
-            <button onClick={handleSearch}>Search</button>
         </div>
     )
 }
