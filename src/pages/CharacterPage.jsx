@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchData } from '../api/apiHandler';
-import SearchBar from './SearchBar';
+import SearchBar from '../components/SearchBar';
 
 function CharacterList() {
   // State variables to store characters, current and total pages
