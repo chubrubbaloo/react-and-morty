@@ -50,6 +50,18 @@ function CharactersPage() {
     }
   }
 
+  // Function to get the appropriate status indicator color
+  const getStatusIndicatorColor = (status) => {
+    switch (status) {
+      case 'Alive':
+        return 'bg-success'; // Green
+      case 'Dead':
+        return 'bg-danger'; // Red
+      default:
+        return 'bg-secondary'; // Grey
+    }
+  }
+
   return (
     <div className="container mt-4">
       <h1 className="mb-4">Rick and Morty Characters</h1>
@@ -60,8 +72,10 @@ function CharactersPage() {
             <div className="card">
               <img src={character.image} alt={character.name} className="card-img-top" />
               <div className="card-body">
-                <h5 className="card-title">{character.name}</h5>
-                <p className="card-text">Status: {character.status}</p>
+                <h5 className="card-title">
+                  {character.name}
+                </h5>
+                <p className="card-text">Status: {character.status} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
                 <Link to={`/character/${character.id}`} className="btn btn-primary">
                   View Details
                 </Link>
