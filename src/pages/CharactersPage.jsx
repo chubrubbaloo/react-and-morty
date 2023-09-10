@@ -22,7 +22,7 @@ function CharactersPage() {
       }
     }
 
-    // Call fetchCharacters with the current page 
+    // Call fetchCharacters with the current page
     fetchCharacters(currentPage);
   }, [currentPage]);
 
@@ -48,29 +48,43 @@ function CharactersPage() {
     } catch (error) {
       console.error('Error searching character:', error);
     }
-
   }
 
   return (
-    <div>
-      <h1>Rick and Morty Characters</h1>
+    <div className="container mt-4">
+      <h1 className="mb-4">Rick and Morty Characters</h1>
       <SearchBar onSearch={searchCharacters} />
-      <ul>
+      <div className="row">
         {characters.map((character) => (
-          <li key={character.id}>
-            {/* Create links to individual character detail pages */}
-            <Link to={`/character/${character.id}`}>{character.name}</Link>
-          </li>
+          <div key={character.id} className="col-md-4 mb-4">
+            <div className="card">
+              <img src={character.image} alt={character.name} className="card-img-top" />
+              <div className="card-body">
+                <h5 className="card-title">{character.name}</h5>
+                <p className="card-text">Status: {character.status}</p>
+                <Link to={`/character/${character.id}`} className="btn btn-primary">
+                  View Details
+                </Link>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
-
-      <div>
-        {/* Disables prev and next buttons if on first or last page */}
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+      </div>
+      <div className="mt-3 d-flex justify-content-between align-items-center">
+        {/* Disables prev and next buttons if on the first or last page */}
+        <button
+          className="btn btn-primary"
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+        >
           Previous
         </button>
         <span>Page {currentPage} of {totalPages}</span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+        <button
+          className="btn btn-primary"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
           Next
         </button>
       </div>
