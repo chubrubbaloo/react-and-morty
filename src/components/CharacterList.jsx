@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchData } from '../api/apiHandler';
+import SearchBar from './SearchBar';
 
 function CharacterList() {
   // State variables to store characters, current and total pages
@@ -39,9 +40,21 @@ function CharacterList() {
     }
   }
 
+  // Search...
+  const searchCharacters = async (characterName) => {
+    try {
+      const data = await fetchData(`character/?name=${characterName}`);
+      setCharacters(data.results);
+    } catch (error) {
+      console.error('Error searching character:', error);
+    }
+
+  }
+
   return (
     <div>
       <h1>Rick and Morty Characters</h1>
+      <SearchBar onSearch={searchCharacters} />
       <ul>
         {characters.map((character) => (
           <li key={character.id}>

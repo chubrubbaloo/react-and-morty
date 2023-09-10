@@ -20,6 +20,7 @@ export default function SearchBar({ onSearch }) {
                 value={searchTerm}
                 onChange={handleInputChange}
             />
+            <button onClick={handleSearch}>Search</button>
         </div>
     )
 }
