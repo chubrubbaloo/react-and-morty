@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchData } from '../api/apiHandler';
 
-function CharacterDetail() {
+function CharacterDetailPage() {
   const { id } = useParams(); // Get the character ID from the URL params using the useParams hook
   const [character, setCharacter] = useState(null);
 
@@ -40,4 +40,4 @@ function CharacterDetail() {
   );
 }
 
-export default CharacterDetail;
+export default CharacterDetailPage;

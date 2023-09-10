@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { fetchData } from '../api/apiHandler';
 import SearchBar from '../components/SearchBar';
 
-function CharacterList() {
+function CharactersPage() {
   // State variables to store characters, current and total pages
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -78,4 +78,4 @@ function CharacterList() {
   );
 }
 
-export default CharacterList;
+export default CharactersPage;
