@@ -30,6 +30,7 @@ function CharactersPage() {
   function handlePreviousPage() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0)
     }
   }
 
@@ -37,6 +38,7 @@ function CharactersPage() {
   function handleNextPage() {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0)
     }
   }
 
@@ -68,17 +70,18 @@ function CharactersPage() {
       <SearchBar onSearch={searchCharacters} />
       <div className="row">
         {characters.map((character) => (
-          <div key={character.id} className="col-md-3 mb-3">
+          <div key={character.id} className="col-md-4 mb-4">
             <div className="card">
               <img src={character.image} alt={character.name} className="card-img-top" />
               <div className="card-body">
                 <h5 className="card-title">
-                  {character.name}
+                <Link style={{textDecoration: 'none'}} to={`/character/${character.id}`}>{character.name}</Link> 
                 </h5>
                 <p className="card-text">Status: {character.status} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
-                <Link to={`/character/${character.id}`} className="btn btn-primary">
-                  View Details
-                </Link>
+                 Last known location:
+                 <br />
+                 {character.location.name}
+               
               </div>
             </div>
           </div>
