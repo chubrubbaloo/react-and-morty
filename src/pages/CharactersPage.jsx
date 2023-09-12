@@ -17,6 +17,7 @@ function CharactersPage() {
         const data = await fetchData(`character/?page=${page}`);
         setCharacters(data.results);
         setTotalPages(data.info.pages);
+        console.log(data.results);
       } catch (error) {
         console.error('Error fetching characters:', error);
       }
@@ -77,7 +78,7 @@ function CharactersPage() {
                 <h5 className="card-title">
                 <Link style={{textDecoration: 'none'}} to={`/character/${character.id}`}>{character.name}</Link> 
                 </h5>
-                <p className="card-text">Status: {character.status} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
+                <p className="card-text">{character.status} - {character.species} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
                  Last known location:
                  <br />
                  {character.location.name}

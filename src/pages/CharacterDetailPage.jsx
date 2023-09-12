@@ -28,14 +28,28 @@ function CharacterDetailPage() {
     return <div>Loading...</div>;
   }
 
+  // Function to get the appropriate status indicator color
+  const getStatusIndicatorColor = (status) => {
+    switch (status) {
+      case 'Alive':
+        return 'bg-success'; // Green
+      case 'Dead':
+        return 'bg-danger'; // Red
+      default:
+        return 'bg-secondary'; // Grey
+    }
+  }
+
+
   // Once character data is available, render the character details
   return (
     <div>
-      <h1>Character Details</h1>
-      <h2>{character.name}</h2>
       <img src={character.image} alt={character.name} />
-      <p>Status: {character.status}</p>
-      <p>Species: {character.species}</p>
+      <h2>{character.name}</h2>
+      <p className="card-text"> {character.status} - {character.species} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
+      <p>Gender: {character.gender} </p>
+      <p>Origin: {character.origin.name} </p>
+      <p>Last known location: {character.location.name} </p>
     </div>
   );
 }
