@@ -43,6 +43,7 @@ function CharactersPage() {
     }
   }
 
+ 
   // Search...
   const searchCharacters = async (characterName) => {
     try {

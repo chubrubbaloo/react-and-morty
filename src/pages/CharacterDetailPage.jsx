@@ -5,6 +5,7 @@ import { fetchData } from '../api/apiHandler';
 function CharacterDetailPage() {
   const { id } = useParams(); // Get the character ID from the URL params using the useParams hook
   const [character, setCharacter] = useState(null);
+  const [firstEpisode, setFirstEpisode] = useState('');
 
   // Use the useEffect hook to fetch character data when the component mounts
   useEffect(() => {
@@ -20,12 +21,23 @@ function CharacterDetailPage() {
       }
     }
 
+    async function fetchEpisode() {
+      const data2 = await fetchData(`episode/1`);
+      console.log(data2);
+      setFirstEpisode(data2);
+    }
+
+    fetchEpisode()
+
+
+
+
     fetchCharacter();
   }, [id]);
 
   // If character data has not been fetched yet, display a loading message
   if (!character) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   // Function to get the appropriate status indicator color
@@ -50,6 +62,7 @@ function CharacterDetailPage() {
       <p>Gender: {character.gender} </p>
       <p>Origin: {character.origin.name} </p>
       <p>Last known location: {character.location.name} </p>
+      <p>First seen:  {firstEpisode.episode} - {firstEpisode.name} </p>
     </div>
   );
 }
