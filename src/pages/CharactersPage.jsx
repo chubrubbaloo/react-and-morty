@@ -85,7 +85,7 @@ function CharactersPage() {
       <SearchBar onSearch={searchCharacters} />
       <div className="row">
         {characters.map((character) => (
-          <div key={character.id} className="col-md-4 mb-4">
+          <div key={character.id} className="col-md-3 mb-3">
             <div className="card">
               <img src={character.image} alt={character.name} className="card-img-top" />
               <div className="card-body">
@@ -98,7 +98,9 @@ function CharactersPage() {
                 {character.location.name}
                 <br />
                 <br />
-                <p>First seen in: {character.firstEpisode} </p>
+                First seen in:
+                <br />
+                {character.firstEpisode}
               </div>
             </div>
           </div>
