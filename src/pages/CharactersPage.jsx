@@ -17,7 +17,21 @@ function CharactersPage() {
         const data = await fetchData(`character/?page=${page}`);
         setCharacters(data.results);
         setTotalPages(data.info.pages);
-        console.log(data.results);
+
+        // Fetch and set the first episode for each character
+        const charactersWithFirstEpisodes = await Promise.all(
+          data.results.map(async (character) => {
+            const firstEpisodeUrl = character.episode[0];
+            const firstEpisodeResponse = await fetch(firstEpisodeUrl);
+            if (firstEpisodeResponse.status === 200) {
+              const firstEpisodeData = await firstEpisodeResponse.json();
+              character.firstEpisode = firstEpisodeData.name;
+            }
+            return character;
+          })
+        );
+
+        setCharacters(charactersWithFirstEpisodes);
       } catch (error) {
         console.error('Error fetching characters:', error);
       }
@@ -31,7 +45,7 @@ function CharactersPage() {
   function handlePreviousPage() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
   }
 
@@ -39,11 +53,10 @@ function CharactersPage() {
   function handleNextPage() {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
   }
 
- 
   // Search...
   const searchCharacters = async (characterName) => {
     try {
@@ -77,13 +90,15 @@ function CharactersPage() {
               <img src={character.image} alt={character.name} className="card-img-top" />
               <div className="card-body">
                 <h5 className="card-title">
-                <Link style={{textDecoration: 'none'}} to={`/character/${character.id}`}>{character.name}</Link> 
+                  <Link style={{ textDecoration: 'none' }} to={`/character/${character.id}`}>{character.name}</Link>
                 </h5>
                 <p className="card-text">{character.status} - {character.species} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
-                 Last known location:
-                 <br />
-                 {character.location.name}
-               
+                Last known location:
+                <br />
+                {character.location.name}
+                <br />
+                <br />
+                <p>First seen in: {character.firstEpisode} </p>
               </div>
             </div>
           </div>
