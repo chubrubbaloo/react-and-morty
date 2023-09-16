@@ -73,13 +73,12 @@ function CharacterDetailPage() {
       <img src={character.image} alt={character.name} />
       <h2>{character.name}</h2>
       <p className="card-text">
-        Status: {character.status}{'  '}
+      {character.status} - {character.species} {'  '}
         <span
           className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`}
           style={{ width: '10px', height: '10px', display: 'inline-block' }}
-        ></span>{' '}
+        ></span>
       </p>
-      <p>Species: {character.species} </p>
       <p>Gender: {character.gender} </p>
       <p>Origin: {character.origin.name} </p>
       <p>Last known location: {character.location.name} </p>
