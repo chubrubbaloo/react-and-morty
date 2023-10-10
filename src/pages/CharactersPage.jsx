@@ -9,6 +9,8 @@ function CharactersPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  // test
+
   // Use useEffect to fetch characters when the component mounts or when the current page changes
   useEffect(() => {
     async function fetchCharacters(page) {
