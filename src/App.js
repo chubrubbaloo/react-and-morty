@@ -1,5 +1,6 @@
 
 import React from 'react';
+import styles from '../src/App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CharactersPage from './pages/CharactersPage';
 import CharacterDetailPage from './pages/CharacterDetailPage';

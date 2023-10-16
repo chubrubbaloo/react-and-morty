@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchData } from '../api/apiHandler';
 import SearchBar from '../components/SearchBar';
+import {CharactersPageStyle} from './CharactersPageStyle.css';
+import {Button, Container, Grid, Paper, styled} from "@mui/material";
 
 function CharactersPage() {
   // State variables to store characters, current and total pages
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
-  // test
 
   // Use useEffect to fetch characters when the component mounts or when the current page changes
   useEffect(() => {
@@ -73,60 +73,80 @@ function CharactersPage() {
   const getStatusIndicatorColor = (status) => {
     switch (status) {
       case 'Alive':
-        return 'bg-success'; // Green
+        return 'bg-success';
       case 'Dead':
-        return 'bg-danger'; // Red
+        return 'bg-danger';
       default:
-        return 'bg-secondary'; // Grey
+        return 'bg-secondary';
     }
   }
 
+  if (!characters) {
+    return <div>Loading...</div>;
+  }
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
   return (
-    <div className="container mt-4">
-      <h1 className="mb-4">Rick and Morty Characters</h1>
+    <>
+      <h1 className="mb-4 text-color">React & Morty</h1>
       <SearchBar onSearch={searchCharacters} />
-      <div className="row">
+
+
+      <Grid
+          container
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="flex-start"
+      >
+
         {characters.map((character) => (
-          <div key={character.id} className="col-md-3 mb-3">
-            <div className="card">
-              <img src={character.image} alt={character.name} className="card-img-top" />
-              <div className="card-body">
-                <h5 className="card-title">
-                  <Link style={{ textDecoration: 'none' }} to={`/character/${character.id}`}>{character.name}</Link>
-                </h5>
-                <p className="card-text">{character.status} - {character.species} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
-                Last known location:
-                <br />
-                {character.location.name}
-                <br />
-                <br />
-                First seen in:
-                <br />
-                {character.firstEpisode}
-              </div>
-            </div>
-          </div>
+            <Grid key={character.id} style={{border: '2px solid black',marginBottom: '2em', borderRadius: '8px'}}>
+              <img src={character.image} alt={character.name} />
+              <h5 className="card-title">
+                <Link className="heading no-text-decoration" to={`/character/${character.id}`}>{character.name}</Link>
+              </h5>
+              <p  className="red">{character.status} - {character.species} <span className={`rounded-circle me-2 ${getStatusIndicatorColor(character.status)}`} style={{ width: '10px', height: '10px', display: 'inline-block' }}></span> </p>
+              Last known location:
+              <br />
+              {character.location.name}
+              <br />
+              <br />
+              First seen in:
+              <br />
+              {character.firstEpisode}
+            </Grid>
         ))}
-      </div>
-      <div className="mt-3 d-flex justify-content-between align-items-center">
+      </Grid>
+
+
+
+
+      <div >
         {/* Disables prev and next buttons if on the first or last page */}
-        <button
-          className="btn btn-primary"
+        <Button
+            variant="contained"
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
         >
           Previous
-        </button>
+        </Button>
         <span>Page {currentPage} of {totalPages}</span>
-        <button
-          className="btn btn-primary"
+        <Button
+            variant="contained"
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
           Next
-        </button>
+        </Button>
       </div>
-    </div>
+      </>
   );
 }
 

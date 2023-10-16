@@ -1,0 +1,26 @@
+.text-color{
+  color: #007533;
+  transition: 0.25s;
+}
+
+.text-color:hover{
+  transition: 0.25s;
+  color: #003824;
+}
+
+
+.no-text-decoration{
+  text-decoration: none;
+}
+
+.heading {
+  color: black;
+  transition: 0.2s;
+  width: fit-content;
+}
+
+.heading:hover {
+  transition: 0.2s;
+  color: orange;
+}
+
