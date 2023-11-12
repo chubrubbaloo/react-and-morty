@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchData } from '../api/apiHandler';
+import {CircularProgress} from "@mui/material";
 
 function CharacterDetailPage() {
   const { id } = useParams(); // Get the character ID from the URL params using the useParams hook
@@ -52,7 +53,10 @@ function CharacterDetailPage() {
 
   // If character data has not been fetched yet, display a loading message
   if (!character) {
-    return <div>Loading...</div>;
+    return <div style={{margin: '2em'}}>
+      <CircularProgress  color="success"/>
+      <h2>Loading...</h2>
+    </div>;
   }
 
   // Function to get the appropriate status indicator color

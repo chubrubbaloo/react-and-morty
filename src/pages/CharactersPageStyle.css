@@ -1,26 +1,49 @@
-.text-color{
-  color: #007533;
-  transition: 0.25s;
+* {
+    scroll-behavior: smooth;
 }
 
-.text-color:hover{
-  transition: 0.25s;
-  color: #003824;
+.text-color {
+    color: #007533;
+    transition: 0.25s;
+}
+
+.text-color:hover {
+    transition: 0.25s;
+    color: #003824;
 }
 
 
-.no-text-decoration{
-  text-decoration: none;
+.no-text-decoration {
+    text-decoration: none;
 }
 
 .heading {
-  color: black;
-  transition: 0.2s;
-  width: fit-content;
+    color: black;
+    transition: 0.2s;
+    width: fit-content;
 }
 
 .heading:hover {
-  transition: 0.2s;
-  color: orange;
+    transition: 0.2s;
+    color: orange;
 }
+
+.grid-item {
+    transition: 0.25s;
+}
+
+.grid-item:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    transition: 0.25s;
+
+}
+
+.status {
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
 

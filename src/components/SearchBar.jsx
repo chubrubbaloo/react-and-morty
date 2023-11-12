@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
-export default function SearchBar({ onSearch }) {
+import React, {useState} from 'react';
+import {TextField} from "@mui/material";
+
+export default function SearchBar({onSearch}) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleInputChange = (e) => {
         const newSearchTerm = e.target.value;
         setSearchTerm(newSearchTerm);
         onSearch(newSearchTerm);
+
+    }
+
+    const handleKeyPressed = (e) => {
+        if (e.key === "Escape") {
+            setSearchTerm('')
+            onSearch('')
+        }
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center mb-3">
-            <div className="input-group" style={{width: '80%'}}>
-                <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Search for a character"
-                    placeholder="Search for a character..."
-                    value={searchTerm}
-                    onChange={handleInputChange}
-                />
-            </div>
-        </div>
+        <>
+            <TextField
+                className="m-3"
+                style={{width: "25%"}}
+                id="outlined-helperText"
+                label="Search Characters"
+                defaultValue="Default Value"
+                value={searchTerm}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyPressed}
+            >
+            </TextField>
+        </>
+
     )
 }
