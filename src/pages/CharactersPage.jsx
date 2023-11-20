@@ -119,6 +119,11 @@ function CharactersPage() {
                                 </span>
 
                                 <p className="mt-3">Species: <b>{character.species}</b></p>
+
+                                Origin:
+                                <br/>
+                                <div className="pb-4"><b>{character.origin.name}</b></div>
+
                                 Last known location:
                                 <br/>
                                 <div className="pb-4"><b>{character.location.name}</b></div>
