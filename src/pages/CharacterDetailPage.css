@@ -1,0 +1,13 @@
+.column-title {
+    text-align: center !important;
+    font-weight: bold !important;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.table-container {
+    width: 80% !important;
+    margin: 40px auto !important;
+}
