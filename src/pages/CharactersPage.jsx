@@ -6,9 +6,11 @@ import {Button, CircularProgress, Grid, Paper} from "@mui/material";
 import '../pages/CharactersPageStyle.css'
 
 function CharactersPage() {
+    const initialPage = parseInt(localStorage.getItem('currentPage') || 1);
+
     // State variables to store characters, current and total pages
     const [characters, setCharacters] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(initialPage);
     const [totalPages, setTotalPages] = useState(1);
 
     // Use useEffect to fetch characters when the component mounts or when the current page changes
@@ -43,11 +45,15 @@ function CharactersPage() {
         fetchCharacters(currentPage);
     }, [currentPage]);
 
+    useEffect(() => {
+        localStorage.setItem('currentPage', currentPage.toString());
+    }, [currentPage]);
+
     // Function to handle moving to the previous page
     async function handlePreviousPage() {
         if (currentPage > 1) {
             await setCurrentPage(currentPage - 1);
-            window.scrollTo(0, 0);
+            //window.scrollTo(0, 0);
         }
     }
 
@@ -55,7 +61,7 @@ function CharactersPage() {
     async function handleNextPage() {
         if (currentPage < totalPages) {
             await setCurrentPage(currentPage + 1);
-            window.scrollTo(0, 0)
+            // window.scrollTo(0, 0)
 
         }
     }
