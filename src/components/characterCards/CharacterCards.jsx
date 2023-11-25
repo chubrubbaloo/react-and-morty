@@ -1,7 +1,8 @@
 import {Grid, Paper} from "@mui/material";
 import {Link} from "react-router-dom";
 import React from "react";
-import '../pages/CharactersPageStyle.css'
+import './CharacterCards.css'
+
 
 function CharacterCards({characters}) {
 

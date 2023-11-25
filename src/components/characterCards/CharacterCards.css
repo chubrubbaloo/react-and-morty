@@ -1,6 +1,3 @@
-* {
-    scroll-behavior: smooth;
-}
 
 .text-color {
     color: #007533;
@@ -45,5 +42,4 @@
     display: inline-block;
     border-radius: 50%;
 }
-
 

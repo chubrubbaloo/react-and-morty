@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {fetchData} from '../api/apiHandler';
-import SearchBar from '../components/SearchBar';
-import {Button, CircularProgress, Grid} from "@mui/material";
-import '../pages/CharactersPageStyle.css'
-import CharacterCards from "../components/CharacterCards";
-import CustomSpinner from "../components/CustomSpinner";
+import {fetchData} from '../../api/apiHandler';
+import SearchBar from '../../components/SearchBar';
+import {Button, Grid} from "@mui/material";
+import CharacterCards from "../../components/characterCards/CharacterCards";
+import CustomSpinner from "../../components/CustomSpinner";
+import './CharactersPage.css';
 
 function CharactersPage() {
     const initialPage = parseInt(localStorage.getItem('currentPage') || 1);
