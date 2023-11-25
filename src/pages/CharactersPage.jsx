@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
 import {fetchData} from '../api/apiHandler';
 import SearchBar from '../components/SearchBar';
-import {Button, CircularProgress, Grid, Paper} from "@mui/material";
+import {Button, CircularProgress, Grid} from "@mui/material";
 import '../pages/CharactersPageStyle.css'
+import CharacterCards from "../components/CharacterCards";
 
 function CharactersPage() {
     const initialPage = parseInt(localStorage.getItem('currentPage') || 1);
@@ -54,18 +54,6 @@ function CharactersPage() {
         }
     }
 
-    const getStatusIndicatorColor = status => {
-
-        switch (status) {
-            case "Alive":
-                return `#008000`;
-            case "Dead":
-                return `#FF0000`;
-            default:
-                return `#808080`;
-        }
-    }
-
     if (!characters) {
         return <div className="m-5">
             <CircularProgress size="10em" color="success"/>
@@ -81,35 +69,8 @@ function CharactersPage() {
                 container
                 justifyContent="center"
             >
-                {characters.map((character) => (
-                    <Grid className="grid-item m-3" key={character.id}>
-                        <Link className="no-text-decoration" to={`/character/${character.id}`}>
-                            <Paper elevation={2}>
-                                <img src={character.image} alt={character.name}/>
-                                <h4 className="card-title mt-2 mb-4">
-                                    {character.name}
-                                </h4>
-                                Current Status: <b> {character.status} </b> {' '}
-                                <span
-                                    className="status"
-                                    style={{
-                                        border: `5px solid ${getStatusIndicatorColor(character.status)}`
-                                    }}>
-                                </span>
-                                <p className="mt-3">Species: <b>{character.species}</b></p>
-                                Origin:
-                                <br/>
-                                <div className="pb-4"><b>{character.origin.name}</b></div>
-                                Last known location:
-                                <br/>
-                                <div className="pb-4"><b>{character.location.name}</b></div>
-                            </Paper>
-                        </Link>
-                    </Grid>
-                ))}
+                <CharacterCards characters={characters}/>
             </Grid>
-
-
             <div>
                 <Button
                     variant="contained"
