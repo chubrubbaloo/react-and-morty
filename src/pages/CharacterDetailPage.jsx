@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {fetchData} from '../api/apiHandler';
-import {CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import '../pages/CharacterDetailPage.css'
+import CustomSpinner from "../components/CustomSpinner";
 
 function CharacterDetailPage() {
     const {id} = useParams();
@@ -44,10 +45,7 @@ function CharacterDetailPage() {
     }, [id]);
 
     if (!character) {
-        return <div className="m-5">
-            <CircularProgress size="10em" color="success"/>
-            <h2 className="m-5">Loading...</h2>
-        </div>;
+        return <CustomSpinner/>
     }
 
     return (
