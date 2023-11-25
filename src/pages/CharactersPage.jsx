@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
 import {fetchData} from '../api/apiHandler';
-import {Button, Grid} from "@mui/material";
-import '../pages/CharactersPageStyle.css';
+import SearchBar from '../components/SearchBar';
+import {Button, CircularProgress, Grid} from "@mui/material";
+import '../pages/CharactersPageStyle.css'
 import CharacterCards from "../components/CharacterCards";
-import CustomSpinner from "../components/CustomSpinner";
-import SearchBar from "../components/SearchBar";
 
 function CharactersPage() {
-    const {page} = useParams();
-    const navigate = useNavigate();
-
-    const initialPage = parseInt(page || 1);
+    const initialPage = parseInt(localStorage.getItem('currentPage') || 1);
 
     const [characters, setCharacters] = useState([]);
     const [currentPage, setCurrentPage] = useState(initialPage);
@@ -38,7 +33,6 @@ function CharactersPage() {
     async function handlePreviousPage() {
         if (currentPage > 1) {
             await setCurrentPage(currentPage - 1);
-            navigate(`/${currentPage - 1}`);
             window.scrollTo(0, 0);
         }
     }
@@ -46,8 +40,8 @@ function CharactersPage() {
     async function handleNextPage() {
         if (currentPage < totalPages) {
             await setCurrentPage(currentPage + 1);
-            navigate(`/${currentPage + 1}`);
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0)
+
         }
     }
 
@@ -61,7 +55,10 @@ function CharactersPage() {
     }
 
     if (!characters) {
-        return <CustomSpinner/>
+        return <div className="m-5">
+            <CircularProgress size="10em" color="success"/>
+            <h2 className="m-5">Loading...</h2>
+        </div>;
     }
 
     return (
