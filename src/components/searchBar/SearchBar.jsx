@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {TextField} from "@mui/material";
+import './SearchBar.css';
 
 export default function SearchBar({onSearch}) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -19,10 +20,10 @@ export default function SearchBar({onSearch}) {
     }
 
     return (
-        <>
+        <div style={{width: '50%', margin: 'auto'}}>
             <TextField
-                className="m-3"
-                style={{width: "25%"}}
+                className='search-bar-spacing'
+                style={{width: "100%", margin: '1em'}}
                 id="outlined-helperText"
                 label="Search Characters"
                 defaultValue="Default Value"
@@ -31,7 +32,7 @@ export default function SearchBar({onSearch}) {
                 onKeyDown={handleKeyPressed}
             >
             </TextField>
-        </>
+        </div>
 
     )
 }

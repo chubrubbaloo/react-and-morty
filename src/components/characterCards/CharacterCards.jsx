@@ -21,27 +21,30 @@ function CharacterCards({characters}) {
     return (
         <>
             {characters.map((character) => (
-                <Grid className="grid-item m-3" key={character.id}>
+                <Grid className="grid-item " key={character.id}>
                     <Link className="no-text-decoration" to={`/character/${character.id}`}>
-                        <Paper elevation={2}>
+                        <Paper align='center' elevation={2}>
                             <img src={character.image} alt={character.name}/>
-                            <h4 className="card-title mt-2 mb-4">
-                                {character.name}
-                            </h4>
+                            <h2 align='center'>{character.name}</h2>
                             Current Status: <b> {character.status} </b> {' '}
                             <span
                                 className="status"
                                 style={{
-                                    border: `5px solid ${getStatusIndicatorColor(character.status)}`
+                                    backgroundColor: `${getStatusIndicatorColor(character.status)}`
                                 }}>
                                 </span>
-                            <p className="mt-3">Species: <b>{character.species}</b></p>
+                            <p
+                                className="bold">Species: <b>{character.species}</b></p>
                             Origin:
                             <br/>
                             <div className="pb-4"><b>{character.origin.name}</b></div>
+                            <br/>
                             Last known location:
                             <br/>
-                            <div className="pb-4"><b>{character.location.name}</b></div>
+                            <b>{character.location.name}</b>
+                            <br/>
+                            <br/>
+                            <br/>
                         </Paper>
                     </Link>
                 </Grid>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {fetchData} from '../../api/apiHandler';
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../../components/searchBar/SearchBar';
 import {Button, Grid} from "@mui/material";
 import CharacterCards from "../../components/characterCards/CharacterCards";
 import CustomSpinner from "../../components/CustomSpinner";
@@ -12,6 +12,7 @@ function CharactersPage() {
     const [characters, setCharacters] = useState([]);
     const [currentPage, setCurrentPage] = useState(initialPage);
     const [totalPages, setTotalPages] = useState(1);
+
 
     useEffect(() => {
         async function fetchCharacters(page) {
@@ -61,7 +62,7 @@ function CharactersPage() {
 
     return (
         <>
-            <h1 className="mt-3">Rickipedia</h1>
+            <h1 align='center'>Rickipedia</h1>
             <SearchBar onSearch={searchCharacters}/>
             <Grid
                 container
@@ -69,21 +70,23 @@ function CharactersPage() {
             >
                 <CharacterCards characters={characters}/>
             </Grid>
-            <div>
+            <div align='center'>
                 <Button
+                    color='success'
                     variant="contained"
                     onClick={handlePreviousPage}
                     disabled={currentPage === 1}
-                    className="m-3"
+                    className='pagination-buttons'
                 >
-                    Previous
+                    Prev
                 </Button>
-                <b>{currentPage} / {totalPages}</b>
+                {currentPage} / {totalPages}
                 <Button
+                    color='success'
                     variant="contained"
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}
-                    className="m-3"
+                    className='pagination-buttons'
                 >
                     Next
                 </Button>

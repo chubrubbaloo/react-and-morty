@@ -1,7 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {fetchData} from '../../api/apiHandler';
-import {CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography
+} from "@mui/material";
 import './CharacterDetailPage.css'
 import CustomSpinner from "../../components/CustomSpinner";
 
@@ -50,8 +59,12 @@ function CharacterDetailPage() {
 
     return (
         <div>
-            <img className="mt-4" src={character.image} alt={character.name}/>
-            <h2 className="mt-4">{character.name}</h2>
+            <div className='center-image'>
+                <img className='rounded-image' src={character.image} alt={character.name}/>
+            </div>
+            <Typography variant='h5'>
+                <h2 align='center'>{character.name}</h2>
+            </Typography>
             <TableContainer className="table-container" component={Paper}>
                 <Table>
                     <TableHead>
@@ -64,9 +77,9 @@ function CharacterDetailPage() {
                     <TableBody>
                         {episodes.map((episode, index) => (
                             <TableRow key={index}>
-                                <TableCell className="text-center">{episode.episode}</TableCell>
-                                <TableCell className="text-center">{episode.name}</TableCell>
-                                <TableCell className="text-center">{episode.air_date}</TableCell>
+                                <TableCell align='center'>{episode.episode}</TableCell>
+                                <TableCell align='center'>{episode.name}</TableCell>
+                                <TableCell align='center'>{episode.air_date}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

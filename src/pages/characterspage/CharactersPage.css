@@ -1,4 +1,7 @@
 * {
     scroll-behavior: smooth;
-    text-align: center;
+}
+
+.pagination-buttons {
+    margin: 1em !important;
 }

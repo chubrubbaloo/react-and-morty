@@ -12,3 +12,13 @@
     width: 80% !important;
     margin: 40px auto !important;
 }
+
+.center-image {
+    display: flex;
+    justify-content: center;
+}
+
+.rounded-image {
+    border-radius: 50%;
+}
+
