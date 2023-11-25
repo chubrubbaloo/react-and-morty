@@ -3,7 +3,7 @@ import {fetchData} from '../../api/apiHandler';
 import SearchBar from '../../components/searchBar/SearchBar';
 import {Button, Grid} from "@mui/material";
 import CharacterCards from "../../components/characterCards/CharacterCards";
-import CustomSpinner from "../../components/CustomSpinner";
+import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import './CharactersPage.css';
 
 function CharactersPage() {

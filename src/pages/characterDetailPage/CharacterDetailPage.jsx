@@ -12,7 +12,7 @@ import {
     Typography
 } from "@mui/material";
 import './CharacterDetailPage.css'
-import CustomSpinner from "../../components/CustomSpinner";
+import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 
 function CharacterDetailPage() {
     const {id} = useParams();
