@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import {Button, CircularProgress, Grid} from "@mui/material";
 import '../pages/CharactersPageStyle.css'
 import CharacterCards from "../components/CharacterCards";
+import CustomSpinner from "../components/CustomSpinner";
 
 function CharactersPage() {
     const initialPage = parseInt(localStorage.getItem('currentPage') || 1);
@@ -55,10 +56,7 @@ function CharactersPage() {
     }
 
     if (!characters) {
-        return <div className="m-5">
-            <CircularProgress size="10em" color="success"/>
-            <h2 className="m-5">Loading...</h2>
-        </div>;
+        return <CustomSpinner/>
     }
 
     return (
