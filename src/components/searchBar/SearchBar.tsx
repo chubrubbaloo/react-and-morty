@@ -2,20 +2,22 @@ import React, {useState} from 'react';
 import {TextField} from "@mui/material";
 import './SearchBar.css';
 
-export default function SearchBar({onSearch}) {
-    const [searchTerm, setSearchTerm] = useState('');
+interface Props {
+    onSearch: (term: string) => void;
+}
 
-    const handleInputChange = (e) => {
-        const newSearchTerm = e.target.value;
+const SearchBar: React.FC<Props> = ({onSearch}) => {
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
+    const handleInputChange = (newSearchTerm: string) => {
         setSearchTerm(newSearchTerm);
         onSearch(newSearchTerm);
-
     }
 
-    const handleKeyPressed = (e) => {
+    const handleKeyPressed = (e: any) => {
         if (e.key === "Escape") {
-            setSearchTerm('')
-            onSearch('')
+            setSearchTerm('');
+            onSearch('');
         }
     }
 
@@ -28,11 +30,11 @@ export default function SearchBar({onSearch}) {
                 label="Search Characters"
                 defaultValue="Default Value"
                 value={searchTerm}
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e.target.value)}
                 onKeyDown={handleKeyPressed}
-            >
-            </TextField>
+            />
         </div>
-
-    )
+    );
 }
+
+export default SearchBar;
