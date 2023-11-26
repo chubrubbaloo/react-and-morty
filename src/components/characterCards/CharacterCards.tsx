@@ -3,10 +3,27 @@ import {Link} from "react-router-dom";
 import React from "react";
 import './CharacterCards.css'
 
+interface Character {
+    id: number;
+    name: string;
+    image: string;
+    status: "Alive" | "Dead" | string;
+    species: string;
+    origin: {
+        name: string;
+    };
+    location: {
+        name: string;
+    };
+}
 
-function CharacterCards({characters}) {
+interface Props {
+    characters: Character[];
+}
 
-    const getStatusIndicatorColor = status => {
+const CharacterCards: React.FC<Props> = ({characters}) => {
+
+    const getStatusIndicatorColor = (status: string) => {
 
         switch (status) {
             case "Alive":
@@ -21,11 +38,11 @@ function CharacterCards({characters}) {
     return (
         <>
             {characters.map((character) => (
-                <Grid className="grid-item " key={character.id}>
+                <Grid className="grid-item text-center" key={character.id}>
                     <Link className="no-text-decoration" to={`/character/${character.id}`}>
-                        <Paper align='center' elevation={2}>
+                        <Paper elevation={2}>
                             <img src={character.image} alt={character.name}/>
-                            <h2 align='center'>{character.name}</h2>
+                            <h2>{character.name}</h2>
                             Current Status: <b> {character.status} </b> {' '}
                             <span
                                 className="status"
@@ -42,7 +59,6 @@ function CharacterCards({characters}) {
                             Last known location:
                             <br/>
                             <b>{character.location.name}</b>
-                            <br/>
                             <br/>
                             <br/>
                         </Paper>

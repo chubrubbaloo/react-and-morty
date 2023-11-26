@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {fetchData} from '../../api/apiHandler';
 import SearchBar from '../../components/searchBar/SearchBar';
 import {Button, Grid} from "@mui/material";
-import CharacterCards from "../../components/characterCards/CharacterCards";
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import './CharactersPage.css';
+import CharacterCards from "../../components/characterCards/CharacterCards";
 
 function CharactersPage() {
     const initialPage = parseInt(localStorage.getItem('currentPage') || 1);
