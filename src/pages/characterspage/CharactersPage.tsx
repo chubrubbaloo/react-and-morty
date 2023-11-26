@@ -1,21 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import {fetchData} from '../../api/apiHandler';
 import SearchBar from '../../components/searchBar/SearchBar';
-import {Button, Grid} from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import './CharactersPage.css';
 import CharacterCards from "../../components/characterCards/CharacterCards";
 
-function CharactersPage() {
-    const initialPage = parseInt(localStorage.getItem('currentPage') || 1);
+interface Character {
+    id: number;
+    name: string;
+    image: string;
+    status: string;
+    species: string;
+    origin: {
+        name: string;
+    };
+    location: {
+        name: string;
+    };
+}
 
-    const [characters, setCharacters] = useState([]);
-    const [currentPage, setCurrentPage] = useState(initialPage);
-    const [totalPages, setTotalPages] = useState(1);
+const CharactersPage: React.FC = () => {
+    const initialPage = parseInt(localStorage.getItem('currentPage') || '1');
 
+    const [characters, setCharacters] = useState<Character[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(initialPage);
+    const [totalPages, setTotalPages] = useState<number>(1);
 
     useEffect(() => {
-        async function fetchCharacters(page) {
+        async function fetchCharacters(page: number) {
             try {
                 const data = await fetchData(`character/?page=${page}`);
                 setCharacters(data.results);
@@ -42,12 +55,11 @@ function CharactersPage() {
     async function handleNextPage() {
         if (currentPage < totalPages) {
             await setCurrentPage(currentPage + 1);
-            window.scrollTo(0, 0)
-
+            window.scrollTo(0, 0);
         }
     }
 
-    const searchCharacters = async (characterName) => {
+    const searchCharacters = async (characterName: string) => {
         try {
             const data = await fetchData(`character/?name=${characterName}`);
             setCharacters(data.results);
@@ -57,12 +69,14 @@ function CharactersPage() {
     }
 
     if (!characters) {
-        return <CustomSpinner/>
+        return <CustomSpinner/>;
     }
 
     return (
         <>
-            <h1 align='center'>Rickipedia</h1>
+            <Typography align='center'>
+                <h1>Rickipedia</h1>
+            </Typography>
             <SearchBar onSearch={searchCharacters}/>
             <Grid
                 container
@@ -70,7 +84,7 @@ function CharactersPage() {
             >
                 <CharacterCards characters={characters}/>
             </Grid>
-            <div align='center'>
+            <div className='center-content'>
                 <Button
                     color='success'
                     variant="contained"

@@ -3,5 +3,9 @@
 }
 
 .pagination-buttons {
-    margin: 1em !important;
+    margin: 2em !important;
+}
+
+.center-content {
+    text-align: center;
 }
