@@ -1,6 +1,6 @@
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-async function fetchData(endpoint) {
+async function fetchData(endpoint: any) {
     try {
         const response = await fetch(`${BASE_URL}/${endpoint}`);
         if (!response.ok) {

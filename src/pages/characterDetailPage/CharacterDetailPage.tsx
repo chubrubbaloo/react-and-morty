@@ -11,13 +11,28 @@ import {
     TableRow,
     Typography
 } from "@mui/material";
-import './CharacterDetailPage.css'
+import './CharacterDetailPage.css';
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 
-function CharacterDetailPage() {
-    const {id} = useParams();
-    const [character, setCharacter] = useState(null);
-    const [episodes, setEpisodes] = useState([]);
+interface Episode {
+    name: string;
+    episode: string;
+    air_date: string;
+}
+
+interface Character {
+    id: string;
+    image: string;
+    name: string;
+    episode: string[];
+}
+
+const CharacterDetailPage: React.FC = () => {
+    const {id} = useParams<{
+        id: string
+    }>();
+    const [character, setCharacter] = useState<Character | null>(null);
+    const [episodes, setEpisodes] = useState<Episode[]>([]);
 
     useEffect(() => {
         async function fetchCharacter() {
@@ -26,7 +41,7 @@ function CharacterDetailPage() {
                 setCharacter(data);
                 const episodeURLs = data.episode;
 
-                const episodePromises = episodeURLs.map(async (url) => {
+                const episodePromises = episodeURLs.map(async (url: any) => {
                     const episodeResponse = await fetch(url);
                     if (episodeResponse.status === 200) {
                         return episodeResponse.json();
@@ -54,7 +69,7 @@ function CharacterDetailPage() {
     }, [id]);
 
     if (!character) {
-        return <CustomSpinner/>
+        return <CustomSpinner/>;
     }
 
     return (
@@ -62,8 +77,8 @@ function CharacterDetailPage() {
             <div className='center-image'>
                 <img className='rounded-image' src={character.image} alt={character.name}/>
             </div>
-            <Typography variant='h5'>
-                <h2 align='center'>{character.name}</h2>
+            <Typography align='center' variant='h5'>
+                <h2>{character.name}</h2>
             </Typography>
             <TableContainer className="table-container" component={Paper}>
                 <Table>
