@@ -7,7 +7,7 @@ interface Character {
     id: number;
     name: string;
     image: string;
-    status: "Alive" | "Dead" | string;
+    status: string;
     species: string;
     origin: {
         name: string;
@@ -65,7 +65,6 @@ const CharacterCards: React.FC<Props> = ({characters}) => {
                     </Link>
                 </Grid>
             ))}
-
         </>
     )
 }
