@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {fetchData} from '../../api/apiHandler';
 import SearchBar from '../../components/searchBar/SearchBar';
-import {Button, Grid, Typography} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import './CharactersPage.css';
 import CharacterCards from "../../components/characterCards/CharacterCards";
+import CustomPagination from "../../components/customPagination/CustomPagination";
 
 interface Character {
     id: number;
@@ -45,19 +46,10 @@ const CharactersPage: React.FC = () => {
         localStorage.setItem('currentPage', currentPage.toString());
     }, [currentPage]);
 
-    async function handlePreviousPage() {
-        if (currentPage > 1) {
-            await setCurrentPage(currentPage - 1);
-            window.scrollTo(0, 0);
-        }
-    }
-
-    async function handleNextPage() {
-        if (currentPage < totalPages) {
-            await setCurrentPage(currentPage + 1);
-            window.scrollTo(0, 0);
-        }
-    }
+    const handlePageChange = (newPage: number) => {
+        setCurrentPage(newPage);
+        window.scrollTo(0, 0);
+    };
 
     const searchCharacters = async (characterName: string) => {
         try {
@@ -84,27 +76,11 @@ const CharactersPage: React.FC = () => {
             >
                 <CharacterCards characters={characters}/>
             </Grid>
-            <div className='center-content'>
-                <Button
-                    color='success'
-                    variant="contained"
-                    onClick={handlePreviousPage}
-                    disabled={currentPage === 1}
-                    className='pagination-buttons'
-                >
-                    Prev
-                </Button>
-                {currentPage} / {totalPages}
-                <Button
-                    color='success'
-                    variant="contained"
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                    className='pagination-buttons'
-                >
-                    Next
-                </Button>
-            </div>
+            <CustomPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </>
     );
 }
