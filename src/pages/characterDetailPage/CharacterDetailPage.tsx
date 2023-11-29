@@ -13,19 +13,8 @@ import {
 } from "@mui/material";
 import './CharacterDetailPage.css';
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
-
-interface Episode {
-    name: string;
-    episode: string;
-    air_date: string;
-}
-
-interface Character {
-    id: string;
-    image: string;
-    name: string;
-    episode: string[];
-}
+import {Character} from "../../interfaces/Character";
+import {Episode} from "../../interfaces/Episode";
 
 const CharacterDetailPage: React.FC = () => {
     const {id} = useParams<{

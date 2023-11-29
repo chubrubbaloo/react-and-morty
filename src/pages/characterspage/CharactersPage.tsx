@@ -6,22 +6,13 @@ import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import './CharactersPage.css';
 import CharacterCards from "../../components/characterCards/CharacterCards";
 import CustomPagination from "../../components/customPagination/CustomPagination";
+import {Character} from "../../interfaces/Character";
 
-interface Character {
-    id: number;
-    name: string;
-    image: string;
-    status: string;
-    species: string;
-    origin: {
-        name: string;
-    };
-    location: {
-        name: string;
-    };
+interface Props {
+    characters: Character[];
 }
 
-const CharactersPage: React.FC = () => {
+const CharactersPage: React.FC<Props> = ({}) => {
     const initialPage = parseInt(localStorage.getItem('currentPage') || '1');
 
     const [characters, setCharacters] = useState<Character[]>([]);

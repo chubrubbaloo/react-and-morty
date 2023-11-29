@@ -2,20 +2,7 @@ import {Grid, Paper} from "@mui/material";
 import {Link} from "react-router-dom";
 import React from "react";
 import './CharacterCards.css'
-
-interface Character {
-    id: number;
-    name: string;
-    image: string;
-    status: string;
-    species: string;
-    origin: {
-        name: string;
-    };
-    location: {
-        name: string;
-    };
-}
+import {Character} from "../../interfaces/Character";
 
 interface Props {
     characters: Character[];
