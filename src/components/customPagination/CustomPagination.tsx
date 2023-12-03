@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button} from '@mui/material';
+import {Pagination, Stack} from '@mui/material';
+import './CustomPagination.css';
 
 interface Props {
     currentPage: number;
@@ -8,39 +9,24 @@ interface Props {
 }
 
 const CustomPagination: React.FC<Props> = ({currentPage, totalPages, onPageChange}) => {
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            onPageChange(currentPage - 1);
-        }
-    };
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            onPageChange(currentPage + 1);
-        }
+    const handlePaginationChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        onPageChange(value);
     };
 
     return (
-        <div className='center-content'>
-            <Button
-                color='success'
-                variant="contained"
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
-                className='pagination-buttons'
-            >
-                Prev
-            </Button>
-            {currentPage} / {totalPages}
-            <Button
-                color='success'
-                variant="contained"
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className='pagination-buttons'
-            >
-                Next
-            </Button>
+        <div className="center-content">
+            <Stack>
+                <Pagination
+                    page={currentPage}
+                    count={totalPages}
+                    color="primary"
+                    onChange={handlePaginationChange}
+                    showFirstButton
+                    showLastButton
+                    size='large'
+                    className='pagination-spacing'
+                />
+            </Stack>
         </div>
     );
 };
