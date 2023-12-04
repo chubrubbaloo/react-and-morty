@@ -21,8 +21,6 @@ const CustomPagination: React.FC<Props> = ({currentPage, totalPages, onPageChang
                     count={totalPages}
                     color="primary"
                     onChange={handlePaginationChange}
-                    showFirstButton
-                    showLastButton
                     size='large'
                     className='pagination-spacing'
                 />
