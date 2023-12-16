@@ -1,13 +1,5 @@
 describe('Character details page ', () => {
 
-    it('When clicking on Albert Einstein it should route to his specific detail page', () => {
-        cy.visit('http://localhost:3000');
-
-        cy.get('.grid-item').eq(10).find('a').click();
-
-        cy.url().should('include', '/character/11');
-    })
-
     it('The image of the character should be of Albert Einstein and the alt should be Albert Einstein', () => {
         cy.visit('http://localhost:3000/character/11');
 

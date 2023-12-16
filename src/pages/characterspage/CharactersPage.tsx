@@ -12,7 +12,7 @@ interface Props {
     characters: Character[];
 }
 
-const CharactersPage: React.FC<Props> = ({}) => {
+const CharactersPage: React.FC<Props> = () => {
     const initialPage = parseInt(localStorage.getItem('currentPage') || '1');
 
     const [characters, setCharacters] = useState<Character[]>([]);

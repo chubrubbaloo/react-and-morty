@@ -30,7 +30,7 @@ const CharacterCards: React.FC<Props> = ({characters}) => {
                         <Paper elevation={2}>
                             <img src={character.image} alt={character.name}/>
                             <h2>{character.name}</h2>
-                            Current Status: <b> {character.status} </b> {' '}
+                            Current status: <b> {character.status} </b> {' '}
                             <span
                                 className="status"
                                 style={{
