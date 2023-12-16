@@ -46,8 +46,6 @@ describe('Character details page ', () => {
         cy.get('.MuiTableCell-root')
             .eq(5)
             .contains('July 26, 2015');
-
-
     })
 })
 

@@ -131,9 +131,19 @@ describe('Characters page ', () => {
 
         cy.wait(1000);
 
+        let lastPageNumber = 0;
+
+        cy.request('https://rickandmortyapi.com/api/character')
+
+            .its('body.info.pages')
+            .then((pages) => {
+                lastPageNumber = pages;
+            });
+
+
         cy.window().then((win) => {
             const localStoragePage: any = win.localStorage.getItem('currentPage');
-            expect(parseInt(localStoragePage, 10)).to.equal(42);
+            expect(parseInt(localStoragePage, 10)).to.equal(lastPageNumber);
         })
     });
 
@@ -143,5 +153,4 @@ describe('Characters page ', () => {
 
         cy.url().should('include', '/character/11');
     })
-
 })
