@@ -11,19 +11,14 @@
  <a href="https://react-and-morty-rust.vercel.app/">Live Demo </a>
 ![Skärmavbild 2024-01-04 kl  13 20 48](https://github.com/chubrubbaloo/react-and-morty/assets/71407043/0275c60c-2b8e-45ac-bee8-933b502c22f0)
 
-
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## Om projektet
 
 <a name="about-the-project" ></a>
 Ett projekt där fokuset var på att lära mig Typescript och skriva tester i cypress för att vidareutveckla mina kunskaper på min nuvarande arbetsplats. Jag använde mig av <a href="https://rickandmortyapi.com/">Rick and Morty API:et</a> för att bygga en simpel wikipedia på alla karaktärer som funnits med i TV-serien sen start och vilka avsnitt de varit med i. Tyckte att detta var ett utmärkt projekt för typiska arbetsuppgifter för någon som får jobba med front end. Dessa uppgifter var: hämta och manipulera data från ett tredje parts API, navigering, paginering och avslutningsvis att implementera ett sökfält.  
-<br><br>
 
 
-### Byggt med
+## Byggt med
 ![React][React.js]
 <br>
 ![Typescript][Typescript]
@@ -46,7 +41,7 @@ Kolla node versionen i valfri terminal
   node -v
   ```
 
-### Installation
+## Installation
 
 1. Klona repot i en valfri IDE (VS Code, IntelliJ etc)
    ```sh
