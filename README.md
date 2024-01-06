@@ -3,11 +3,13 @@
 
 
 
-<h3 align="center">React and Morty</h3>
+<h1 align="center">React and Morty</h1>
 
    
 </div>
 
+ <a href="https://react-and-morty-rust.vercel.app/">Live Demo </a>
+![Skärmavbild 2024-01-04 kl  13 20 48](https://github.com/chubrubbaloo/react-and-morty/assets/71407043/0275c60c-2b8e-45ac-bee8-933b502c22f0)
 
 
 
@@ -17,75 +19,54 @@
 ## Om projektet
 
 <a name="about-the-project" ></a>
-Ett projekt där fokuset var på att lära mig Typescript och skriva tester i cypress för att vidareutveckla mina kunskaper på min nuvarande arbetsplats. Jag använda mig av <a href="https://rickandmortyapi.com/">Rick and Morty API:et</a> för att bygga en simpel wikipedia på alla karaktärer som funnits med i TV-serien sen start. Tyckte att detta var ett utmärkt projekt för typiska arbetsuppgifter för någon som får jobba med front end. 
+Ett projekt där fokuset var på att lära mig Typescript och skriva tester i cypress för att vidareutveckla mina kunskaper på min nuvarande arbetsplats. Jag använde mig av <a href="https://rickandmortyapi.com/">Rick and Morty API:et</a> för att bygga en simpel wikipedia på alla karaktärer som funnits med i TV-serien sen start och vilka avsnitt de varit med i. Tyckte att detta var ett utmärkt projekt för typiska arbetsuppgifter för någon som får jobba med front end. Dessa uppgifter var: hämta och manipulera data från ett tredje parts API, navigering, paginering och avslutningsvis att implementera ett sökfält.  
 <br><br>
-
-![FortnoxGIF](https://github.com/chubrubbaloo/fortnox-car-rental/assets/71407043/1d9b8350-204c-4725-9d47-68713b25a6bd)
-![image](https://github.com/chubrubbaloo/fortnox-car-rental/assets/71407043/c5043f90-245a-415e-814a-281476da98a9)
 
 
 ### Byggt med
-[![React][React.js]][React-url]
+![React][React.js]
 <br>
-[![Bootstrap][Bootstrap.com]][Bootstrap-url]
+![Typescript][Typescript]
+<br>
+![MUI][MUI]
+
 
 
 <!-- GETTING STARTED -->
 ## Att komma igång
 
-Följ instruktionerna nedan för att få igång applikationen!
+Följ instruktionerna nedan för att få igång applikationen lokalt på din dator.
 
 ### Nödvändigheter för att komma igång
 
-Make sure to have node and JDK installed on your machine.
+Se till att ha node på din dator.
 
-Check the JDK version on your machine
-  ```sh
-  java -version
-  ```
-
-Check the node version on your machine
+Kolla node versionen i valfri terminal
   ```sh
   node -v
   ```
 
 ### Installation
 
-1. Clone the repo using your favored IDE (VS Code, IntelliJ etc)
+1. Klona repot i en valfri IDE (VS Code, IntelliJ etc)
    ```sh
-   git clone https://github.com/chubrubbaloo/fortnox-car-rental.git
+   git clone https://github.com/chubrubbaloo/react-and-morty
    ```
 
-2. Make sure to create a database that is called rental and set the username and password to match your personal postgres account. You will do this in the application.properties file in the spring boot project.
+2. Skapa en .env fil i roten av projektet och kopiera och klistra in nyckeln nedanför
+   ```sh
+   REACT_APP_BASE_URL=https://rickandmortyapi.com/api
+   ```
 
-3. Build the Java project and run (RentalApplication) to execute the server side first.
-
-4. Go inside the frontend folder and install the node packages from the terminal.
+3. Installera alla paket
    ```sh
    npm i
    ```
 
-5. Fire up the client side from the terminal.
+4. Starta upp projektet lokalt
    ```sh
    npm start
    ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 [spring]: https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white
 [Java]: [https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -112,6 +93,11 @@ Check the node version on your machine
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+
+[Typescript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+
+[MUI]:https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+
 [React-url]: https://reactjs.org/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
